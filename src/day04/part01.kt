@@ -6,6 +6,14 @@ import java.util.*
 val validFields = arrayOf("byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid")
 
 fun main() {
+    parsePassports().count {
+        passport -> validFields.all { passport.contains(it) }
+    }.apply {
+        println("Valid passports: $this")
+    }
+}
+
+private fun parsePassports(): LinkedList<Set<String>> {
     val parsedPassports = LinkedList<Set<String>>()
 
     Paths.get("src/day04/input.in").toFile().readLines().reduce { previousLine, currentLine ->
@@ -19,11 +27,7 @@ fun main() {
         parsedPassports.add(parsePass(lastLine))
     }
 
-    val validPassports = parsedPassports.count { passport ->
-        validFields.all { passport.contains(it) }
-    }
-
-    println("Valid passports: $validPassports")
+    return parsedPassports
 }
 
 private fun parsePass(input: String): Set<String> {
