@@ -7,7 +7,7 @@ val validFields = arrayOf("byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid")
 
 fun main() {
     parsePassports().count {
-        passport -> validFields.all { passport.contains(it) }
+            passport -> validFields.all { field -> passport.contains(field) }
     }.apply {
         println("Valid passports: $this")
     }
