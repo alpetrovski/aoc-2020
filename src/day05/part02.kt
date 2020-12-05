@@ -3,17 +3,19 @@ package day05
 import java.nio.file.Paths
 
 fun main() {
-    val sortedSeats = getSeatNumbers().sorted()
-    for (seatIndex in 1 until sortedSeats.size) {
-        if (sortedSeats[seatIndex] != sortedSeats[seatIndex-1] + 1) {
-            println(sortedSeats[seatIndex-1] + 1)
-            return
-        }
-    }
-    println("seat not found")
+    println("Seat: ${findMissingSeat(getSeatNumbers())}")
 }
 
-private fun getSeatNumbers(): List<Int> {
+private fun findMissingSeat(occupiedSeats: Set<Int>): Int {
+    val firstSeat = occupiedSeats.minOrNull()!!
+    val lastSeat = firstSeat + occupiedSeats.size + 1
+
+    return IntRange(firstSeat, lastSeat).first {
+        seat -> occupiedSeats.contains(seat).not()
+    }
+}
+
+private fun getSeatNumbers(): Set<Int> {
     return Paths.get("src/day05/input.in").toFile().readLines().map { boardingPass ->
         val row = boardingPass.substring(0, 7)
                 .replace("B", "1")
@@ -24,5 +26,5 @@ private fun getSeatNumbers(): List<Int> {
                 .replace("L", "0")
                 .let { binaryString -> Integer.parseInt(binaryString, 2)}
         row * 8 + column
-    }
+    }.toSet()
 }
