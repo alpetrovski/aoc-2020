@@ -3,10 +3,10 @@ package day05
 import java.nio.file.Paths
 
 fun main() {
-    println(getSeatNumbers().maxOrNull())
+    println(occupiedSeats().maxOrNull())
 }
 
-private fun getSeatNumbers(): List<Int> {
+private fun occupiedSeats(): List<Int> {
     return Paths.get("src/day05/input.in").toFile().readLines().map { boardingPass ->
         val row = boardingPass.substring(0, 7)
                 .replace("B", "1")

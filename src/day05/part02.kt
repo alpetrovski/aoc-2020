@@ -3,7 +3,7 @@ package day05
 import java.nio.file.Paths
 
 fun main() {
-    println("Seat: ${findMissingSeat(getSeatNumbers())}")
+    println("Seat: ${findMissingSeat(occupiedSeats())}")
 }
 
 private fun findMissingSeat(occupiedSeats: Set<Int>): Int {
@@ -15,7 +15,7 @@ private fun findMissingSeat(occupiedSeats: Set<Int>): Int {
     }
 }
 
-private fun getSeatNumbers(): Set<Int> {
+private fun occupiedSeats(): Set<Int> {
     return Paths.get("src/day05/input.in").toFile().readLines().map { boardingPass ->
         val row = boardingPass.substring(0, 7)
                 .replace("B", "1")
