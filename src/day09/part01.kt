@@ -4,14 +4,15 @@ import java.nio.file.Paths
 import java.util.*
 
 fun main() {
-    println(findInvalidNumber("src/day09/input.in"))
+    val numbers = Paths.get("src/day09/input.in").toFile().readLines().map { it.toLong() }
+    println(findInvalidNumber(numbers))
 }
 
-fun findInvalidNumber(filePath: String): Long? {
+fun findInvalidNumber(numbers: List<Long>): Long? {
     val preamble = 25
     val lastNumbers = LinkedList<Long>()
 
-    Paths.get(filePath).toFile().readLines().map { it.toLong() }.forEach {number ->
+    numbers.forEach {number ->
         if (lastNumbers.size == preamble) {
             if (!isValidNumber(number, lastNumbers)) {
                 return number

@@ -8,10 +8,11 @@ fun main() {
 }
 
 private fun findWeakness(filePath: String): Long? {
-    val invalidNumber = findInvalidNumber(filePath)!!
+    val numbers = Paths.get(filePath).toFile().readLines().map { it.toLong() }
+    val invalidNumber = findInvalidNumber(numbers)!!
     val contiguousRange = LinkedList<Long>()
 
-    Paths.get(filePath).toFile().readLines().map { it.toLong() }.forEach {number ->
+    numbers.forEach {number ->
         contiguousRange.addLast(number)
 
         while (contiguousRange.sum() > invalidNumber) {
