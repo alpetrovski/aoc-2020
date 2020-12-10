@@ -8,12 +8,12 @@ fun main() {
         this.add(this.maxOrNull()!! + 3)
     }
 
-    val state = mutableMapOf(orderedJoltages.size - 1 to 1L)
-    for (i in orderedJoltages.size - 2 downTo 0) {
-        state[i] = IntRange(i + 1, i + 3)
-            .filter { index -> index < orderedJoltages.size && orderedJoltages[index] - orderedJoltages[i] <= 3 }
-            .map { index -> state[index]!! }.sum()
+    val state = mutableMapOf(0 to 1L)
+    for (index in 1 until orderedJoltages.size) {
+        state[index] = IntRange(index - 3, index - 1)
+            .filter { prevIndex -> prevIndex >= 0 && orderedJoltages[index] - orderedJoltages[prevIndex] <= 3 }
+            .map { prevIndex -> state[prevIndex]!! }.sum()
     }
 
-    println(state[0])
+    println(state[orderedJoltages.size - 1])
 }
