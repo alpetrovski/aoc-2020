@@ -12,3 +12,4 @@
 |08 | [Part1](src/day08/part01.kt) and [Part2](src/day08/part02.kt)|
 |09 | [Part1](src/day09/part01.kt) and [Part2](src/day09/part02.kt)|
 |10 | [Part1](src/day10/part01.kt) and [Part2](src/day10/part02.kt)|
+|11 | [Part1](src/day11/part01.kt) and [Part2](src/day11/part02.kt)|
