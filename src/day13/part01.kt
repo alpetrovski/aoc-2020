@@ -3,7 +3,6 @@ package day13
 import java.nio.file.Paths
 
 fun main() {
-    println("1915 <- expected")
     val inputLines = Paths.get("src/day13/input.in").toFile().readLines()
 
     val arrivalTime = inputLines[0].toInt()
